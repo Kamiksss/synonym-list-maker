@@ -11,7 +11,6 @@
   },
   "scripts": {
     "scrape": "tsx ./index.ts",
-    "build": "tsc index.ts && pkg -t node18 -o synonym_maker index.js;rm index.js",
-    "build-linux": "tsc index.ts && pkg -t node18-linux -o synonym_maker -d index.js;rm index.js"
+    "build": "tsc index.ts  && pkg index.js -t node18 -C GZip -o synonym_maker "
   }
 }
