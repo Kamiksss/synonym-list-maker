@@ -1,12 +1,17 @@
 import * as fs from 'fs';
 import * as cheerio from 'cheerio';
+import { exit, exitCode } from 'process';
 
 const getVocabList = ():string[] => {
-
+    try {
     const vocabfile = fs.readFileSync('./vocab.txt').toString().split("\n");
 
     return vocabfile;
-    
+    }catch{
+        console.error("You didn't provide vocab list to search synonyms for. Please edit vocab.txt");
+        fs.writeFileSync('./vocab.txt',"Please put your vocab list instead of this message. ")
+        process.exit(1);
+    }
 }
 
 const webScrap = async (wordList: string[]) =>{
@@ -40,6 +45,8 @@ const mergeAndSave =  (synonymList: Array<Array<String | Array<String>>>) => {
         let synonyms = synonymList[i][1].toString();
         fs.writeFileSync('./synonyms.txt', `${word}: ${synonyms}\n`, {flag: 'a'})
     }
+
+    console.log('enjoy your szczota learing :)');
     
 
 }

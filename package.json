@@ -6,9 +6,12 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
+    "pkg": "^5.8.1",
     "tsx": "^4.7.1"
   },
   "scripts": {
-    "scrape": "tsx ./index.ts"
+    "scrape": "tsx ./index.ts",
+    "build": "tsc index.ts && pkg -t node18 -o synonym_maker index.js;rm index.js",
+    "build-linux": "tsc index.ts && pkg -t node18-linux -o synonym_maker -d index.js;rm index.js"
   }
 }
